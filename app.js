@@ -4,7 +4,10 @@ const app = express();
 const weatherRoutes = require('./routes/WeatherBack');
 require('dotenv').config();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://playa-honda.vercel.app/'
+}));
+
 
 app.use('/api', weatherRoutes);
 

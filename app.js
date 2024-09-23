@@ -5,7 +5,7 @@ const weatherRoutes = require('./routes/WeatherBack');
 require('dotenv').config();
 
 app.use(cors({
-  origin: 'https://playa-honda-j9wsyidi9-javiers-projects-8caa7eff.vercel.app/'
+  origin: '*'
 }));
 
 

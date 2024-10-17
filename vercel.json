@@ -1,16 +1,23 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "app.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/app.js"
-      }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/sitemap.xml",
+      "dest": "/api/sitemap"   
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"  
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/app.js"   
+    }
+  ]
+}

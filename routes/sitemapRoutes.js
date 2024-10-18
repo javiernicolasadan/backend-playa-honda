@@ -1,31 +1,29 @@
 const express = require('express');
 const { SitemapStream, streamToPromise } = require('sitemap');
-const { createGzip } = require('zlib');
-
 const router = express.Router();
 
-router.get('/sitemap.xml', (req, res) => {
-  res.header('Content-Type', 'application/xml');
-  res.header('Content-Encoding', 'gzip');
+router.get('/sitemap.xml', async (req, res) => {
+  try {
+    const sitemap = new SitemapStream({ hostname: 'https://tu-dominio.com' });
 
-  const smStream = new SitemapStream({ hostname: 'https://playa-honda.vercel.app' });
-  const pipeline = smStream.pipe(createGzip());
+    // Rutas principales de tu aplicación
+    sitemap.write({ url: '/', changefreq: 'daily', priority: 1.0 });
+    sitemap.write({ url: '/apartment', changefreq: 'weekly', priority: 0.8 });
+    sitemap.write({ url: '/gallery', changefreq: 'weekly', priority: 0.8 });
+    sitemap.write({ url: '/activities', changefreq: 'weekly', priority: 0.7 });
+    sitemap.write({ url: '/booking', changefreq: 'weekly', priority: 0.7 });
+    sitemap.write({ url: '/weather', changefreq: 'weekly', priority: 0.7 });
 
-  smStream.write({ url: '/', changefreq: 'daily', priority: 1.0 });
-  smStream.write({ url: '/apartment', changefreq: 'weekly', priority: 0.8 });
-  smStream.write({ url: '/gallery', changefreq: 'weekly', priority: 0.8 });
-  smStream.write({ url: '/activities', changefreq: 'weekly', priority: 0.8 });
-  smStream.write({ url: '/booking', changefreq: 'weekly', priority: 0.8 });
-  smStream.write({ url: '/weather', changefreq: 'daily', priority: 0.9 });
+    // Puedes agregar más rutas dinámicamente aquí si es necesario
+    sitemap.end();
 
-  smStream.end();
-
-  streamToPromise(pipeline)
-    .then(sm => res.send(sm))
-    .catch((error) => {
-      console.error(error);
-      res.status(500).end();
-    });
+    const sitemapData = await streamToPromise(sitemap);
+    res.header('Content-Type', 'application/xml');
+    res.send(sitemapData.toString());
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error generating sitemap');
+  }
 });
 
 module.exports = router;

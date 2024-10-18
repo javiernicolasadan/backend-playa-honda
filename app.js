@@ -11,12 +11,13 @@ app.use(express.json());  // Para asegurarnos de que Express maneja JSON
 
 // Ruta de prueba para ver si el backend está funcionando
 app.get('/test', (req, res) => {
+  console.log("Ruta de prueba solicitada");
   res.send('Ruta de prueba funcionando');
 });
 
 // Rutas para el clima y el sitemap
 app.use('/api', weatherRoutes);
-app.use('/api', sitemapRoutes);
+app.use('/', sitemapRoutes);
 // Comment for redeploy
 // Ruta por defecto para el favicon y otras rutas estáticas (opcional)
 app.use(express.static('public'));

@@ -11,7 +11,6 @@ router.get('/sitemap.xml', (req, res) => {
   const smStream = new SitemapStream({ hostname: 'https://playa-honda.vercel.app' });
   const pipeline = smStream.pipe(createGzip());
 
-  // Definir las rutas
   smStream.write({ url: '/', changefreq: 'daily', priority: 1.0 });
   smStream.write({ url: '/apartment', changefreq: 'weekly', priority: 0.8 });
   smStream.write({ url: '/gallery', changefreq: 'weekly', priority: 0.8 });
@@ -19,9 +18,8 @@ router.get('/sitemap.xml', (req, res) => {
   smStream.write({ url: '/booking', changefreq: 'weekly', priority: 0.8 });
   smStream.write({ url: '/weather', changefreq: 'daily', priority: 0.9 });
 
-  smStream.end();  // Finalizar el stream
+  smStream.end();
 
-  // Enviar el sitemap comprimido
   streamToPromise(pipeline)
     .then(sm => res.send(sm))
     .catch((error) => {

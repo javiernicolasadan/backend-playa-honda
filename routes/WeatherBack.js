@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/weather", async (req, res) => {
   const apiKey = process.env.OPENWEATHERMAP_API_KEY;
-  console.log('API Key:', apiKey);
+  //console.log('API Key:', apiKey);
   const { lat, lon, lang } = req.query;
 
   try {

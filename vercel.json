@@ -8,16 +8,12 @@
   ],
   "routes": [
     {
-      "src": "/sitemap.xml",
-      "dest": "/api/sitemap.xml"   
-    },
-    {
       "src": "/api/(.*)",
-      "dest": "/api/$1"  
+      "dest": "/app.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/app.js"   
+      "dest": "/app.js"
     }
   ]
 }

@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const weatherRoutes = require('./routes/WeatherBack.js');
+const weatherRoutes = require('./routes/weatherBack.js');
 const sitemapRoutes = require('./routes/sitemapRoutes.js');
 require('dotenv').config();
 

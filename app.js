@@ -17,7 +17,7 @@ app.get('/test', (req, res) => {
 // Rutas para el clima y el sitemap
 app.use('/api', weatherRoutes);
 app.use('/api', sitemapRoutes);
-
+// Comment for redeploy
 // Ruta por defecto para el favicon y otras rutas estáticas (opcional)
 app.use(express.static('public'));
 

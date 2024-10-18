@@ -15,6 +15,11 @@ app.use('/api', weatherRoutes);
 // Ruta para el sitemap.xml
 app.use('/api', sitemapRoutes);  // /api/sitemap
 
+app.get('/test', (req, res) => {
+  res.send('Ruta de prueba funcionando en Vercel');
+});
+
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {

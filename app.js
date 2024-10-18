@@ -1,8 +1,8 @@
 const cors = require('cors');
 const express = require('express');
 const app = express();
-const weatherRoutes = require('./routes/WeatherBack');
-const sitemapRoutes = require('./routes/SitemapRoutes');  // Ruta del sitemap
+const weatherRoutes = require('./routes/WeatherBack.js');
+const sitemapRoutes = require('./routes/SitemapRoutes.js');  // Ruta del sitemap
 require('dotenv').config();
 
 app.use(cors({

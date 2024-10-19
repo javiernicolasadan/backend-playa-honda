@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/sitemap.xml', async (req, res) => {
   try {
-    const sitemap = new SitemapStream({ hostname: 'https://tu-dominio.com' });
+    const sitemap = new SitemapStream({ hostname: 'https://playa-honda.vercel.app/' });
 
     // Rutas principales de tu aplicación
     sitemap.write({ url: '/', changefreq: 'daily', priority: 1.0 });
